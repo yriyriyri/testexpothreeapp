@@ -13,12 +13,19 @@ export default function App() {
 
     const renderer = new Renderer({ gl });
     renderer.setSize(width, height);
-    renderer.setClearColor(0x0000ff, 1); 
+    renderer.setClearColor(0x0000ff, 1); // Blue background
 
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
     camera.position.z = 10;
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
+    directionalLight.position.set(10, 10, 10); // Position it nicely
+    scene.add(directionalLight);
 
     let model: THREE.Group | null = null;
 
