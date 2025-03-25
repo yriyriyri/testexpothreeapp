@@ -13,7 +13,9 @@ export default function App() {
 
     const renderer = new Renderer({ gl });
     renderer.setSize(width, height);
-    renderer.setClearColor(0x0000ff, 1); // Blue background
+    renderer.setClearColor(0x0000ff, 1); 
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     const scene = new THREE.Scene();
 
@@ -23,8 +25,12 @@ export default function App() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
-    directionalLight.position.set(10, 10, 10); 
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
+    directionalLight.position.set(10, 10, 10);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    directionalLight.shadow.bias = -0.005;
     scene.add(directionalLight);
 
     let model: THREE.Group | null = null;
@@ -37,6 +43,12 @@ export default function App() {
       const gltf = await loader.loadAsync(asset.localUri!);
       
       model = gltf.scene;
+      model.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
       scene.add(model);
     } catch (error) {
       console.error('Error loading GLB model:', error);
