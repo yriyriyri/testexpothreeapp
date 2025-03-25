@@ -20,11 +20,11 @@ export default function App() {
     const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
     camera.position.z = 10;
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
-    directionalLight.position.set(10, 10, 10); // Position it nicely
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+    directionalLight.position.set(10, 10, 10); 
     scene.add(directionalLight);
 
     let model: THREE.Group | null = null;
