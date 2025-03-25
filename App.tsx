@@ -5,9 +5,13 @@ import { GLView, ExpoWebGLRenderingContext } from 'expo-gl';
 import { Asset } from 'expo-asset';
 import * as THREE from 'three';
 import { Renderer } from 'expo-three';
+import OrbitControlsView  from './OrbitControlsView';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function App() {
+
+  const [camera, setCamera] = React.useState<THREE.Camera | null>(null);
+
   const onContextCreate = async (gl: ExpoWebGLRenderingContext) => {
     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
 
@@ -18,9 +22,10 @@ export default function App() {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
     camera.position.z = 10;
+
+    setCamera(camera);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
@@ -61,7 +66,7 @@ export default function App() {
         model.rotation.y += 0.01;
       }
 
-      renderer.render(scene, camera);
+      renderer.render(scene, camera as THREE.PerspectiveCamera);
       gl.endFrameEXP();
     };
 
@@ -69,9 +74,9 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <GLView style={styles.container} onContextCreate={onContextCreate} />
-    </View>
+      <OrbitControlsView style={{ flex: 1 }} camera={camera}>
+        <GLView style={styles.container} onContextCreate={onContextCreate}/>
+      </OrbitControlsView>
   );
 }
 
