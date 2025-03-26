@@ -10,12 +10,10 @@ import OrbitControlsView from './orbit-controls/OrbitControlsView';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
-// Import your Boxy class
 import { Boxy } from './boxy/boxy';
 
 export default function App() {
   const [camera, setCamera] = React.useState<THREE.Camera | null>(null);
-  // Store your Boxy instance so you can update it every frame.
   let boxyInstance: Boxy | undefined;
 
   const onContextCreate = async (gl: ExpoWebGLRenderingContext) => {
@@ -31,7 +29,6 @@ export default function App() {
 
     const scene = new THREE.Scene();
 
-    // Load HDR environment
     const rgbeLoader = new RGBELoader();
     const hdrUrl = "/BoxyBuilderAssets/envs/hdr/kloofendal_48d_partly_cloudy_puresky_1k.hdr";
     rgbeLoader.load(hdrUrl, (texture) => {
@@ -41,24 +38,20 @@ export default function App() {
     });
     scene.backgroundRotation = new THREE.Euler(0, -90, 0);
 
-    // Set up the camera
     const cameraObj = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
     cameraObj.position.z = 10;
     scene.add(cameraObj);
     setCamera(cameraObj);
 
-    // Add ambient light
     const ambientLight = new THREE.AmbientLight(0xffffff, 4);
     scene.add(ambientLight);
 
-    // Add directional light as a child of the camera
     const light = new THREE.DirectionalLight(0xffffff, 6);
     light.castShadow = true;
     light.shadow.bias = -0.001;
     cameraObj.add(light);
     light.position.copy(new THREE.Vector3(-180, 122, -19));
 
-    // Create your Boxy object and add it to the scene
     try {
       boxyInstance = new Boxy({
         Body: "Body_2",
@@ -92,7 +85,6 @@ export default function App() {
     // } catch (err) {
     // }
 
-    // Create a clock for delta timing
     const clock = new THREE.Clock();
 
     const animate = () => {
