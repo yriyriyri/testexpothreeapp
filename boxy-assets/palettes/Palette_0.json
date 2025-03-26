@@ -1,0 +1,290 @@
+{
+  "Material_Mv_Default_1": {
+    "baseColor": {
+      "r": 0.5795466303825378,
+      "g": 0.23099814355373383,
+      "b": 0.06003161147236824
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 1
+  },
+  "Material_Mv_Default_2": {
+    "baseColor": {
+      "r": 0.3940831422805786,
+      "g": 0.1541522592306137,
+      "b": 0.03994716703891754
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 2
+  },
+  "Material_Mv_Default_3": {
+    "baseColor": {
+      "r": 0.508966863155365,
+      "g": 0.5088590979576111,
+      "b": 0.5088446140289307
+    },
+    "metallic": 0.0,
+    "roughness": 0.48701298236846924,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 3
+  },
+  "Material_Mv_Default_4": {
+    "baseColor": {
+      "r": 0.3940831422805786,
+      "g": 0.3940831422805786,
+      "b": 0.3940831422805786
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 4
+  },
+  "Material_Mv_Default_5": {
+    "baseColor": {
+      "r": 0.43134021759033203,
+      "g": 0.43134021759033203,
+      "b": 0.43134021759033203
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 5
+  },
+  "Material_Mv_Default_6": {
+    "baseColor": {
+      "r": 0.2195197343826294,
+      "g": 0.2195197343826294,
+      "b": 0.2195197343826294
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 6
+  },
+  "Material_Mv_Default_7": {
+    "baseColor": {
+      "r": 0.12474094331264496,
+      "g": 0.12474094331264496,
+      "b": 0.12474094331264496
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 7
+  },
+  "Material_Mv_Default_8": {
+    "baseColor": {
+      "r": 0.2195197343826294,
+      "g": 0.2195197343826294,
+      "b": 0.2195197343826294
+    },
+    "metallic": 0.7532467246055603,
+    "roughness": 0.16233766078948975,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 8
+  },
+  "Material_Mv_Default_9": {
+    "baseColor": {
+      "r": 0.3421708047389984,
+      "g": 0.3421708047389984,
+      "b": 0.3421708047389984
+    },
+    "metallic": 0.7532467246055603,
+    "roughness": 0.16233766078948975,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 9
+  },
+  "Material_Mv_Default_10": {
+    "baseColor": {
+      "r": 0.041451890021562576,
+      "g": 0.041451890021562576,
+      "b": 0.041451890021562576
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 10
+  },
+  "Material_Mv_Metal_11": {
+    "baseColor": {
+      "r": 0.06772459298372269,
+      "g": 0.06772459298372269,
+      "b": 0.06772459298372269
+    },
+    "metallic": 0.0,
+    "roughness": 0.5600000023841858,
+    "emissive": {
+      "r": 0.06772459298372269,
+      "g": 0.06772459298372269,
+      "b": 0.06772459298372269
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 11
+  },
+  "Material_Mv_Emit_12": {
+    "baseColor": {
+      "r": 0.08241420984268188,
+      "g": 0.535641610622406,
+      "b": 0.843369722366333
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 0.0,
+      "g": 0.4079558253288269,
+      "b": 1.0
+    },
+    "emissiveIntensity": 41.29999923706055,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 12
+  },
+  "Material_Mv_Glass_13": {
+    "baseColor": {
+      "r": 0.08122408390045166,
+      "g": 0.36550870537757874,
+      "b": 0.6091806888580322
+    },
+    "metallic": 0.0,
+    "roughness": 0.03999999910593033,
+    "emissive": {
+      "r": 0.03921568766236305,
+      "g": 0.1764705926179886,
+      "b": 0.29411765933036804
+    },
+    "emissiveIntensity": 0.0,
+    "transmission": 0.7141428589820862,
+    "alpha": 1.0,
+    "paletteIndex": 13
+  },
+  "Material_Mv_Emit_14": {
+    "baseColor": {
+      "r": 0.08690125495195389,
+      "g": 1.0,
+      "b": 0.6120656132698059
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 0.005490551702678204,
+      "g": 1.0,
+      "b": 0.590259850025177
+    },
+    "emissiveIntensity": 5.499999523162842,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 14
+  },
+  "Material_Mv_Emit_15": {
+    "baseColor": {
+      "r": 1.0,
+      "g": 0.9687448740005493,
+      "b": 0.9550626277923584
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 1.0,
+      "g": 0.06968194246292114,
+      "b": 0.6712120771408081
+    },
+    "emissiveIntensity": 17.399999618530273,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 15
+  },
+  "Material_Mv_Emit_16": {
+    "baseColor": {
+      "r": 0.022235475480556488,
+      "g": 0.8011000156402588,
+      "b": 0.6251929402351379
+    },
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "emissive": {
+      "r": 0.0,
+      "g": 1.0,
+      "b": 0.8704032897949219
+    },
+    "emissiveIntensity": 4.009557723999023,
+    "transmission": 0.0,
+    "alpha": 1.0,
+    "paletteIndex": 16
+  }
+}
