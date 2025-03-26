@@ -53,7 +53,9 @@ export class BoxyExpressionManager {
             this._isInitialized = false;
         }
     }
+    
 
+    //FIX THIS  ASAP  BROKEN EXPO ASSETS NEED TO STUDY UP 
     private async _loadAtlasTexture(): Promise<void> {
         try {
           console.log("TextureLoader is from:", ExpoTextureLoader?.toString());
