@@ -1,5 +1,4 @@
 import { Asset } from 'expo-asset';
-import { Platform } from 'react-native';
 import * as THREE from 'three';
 import { TextureLoader as ExpoTextureLoader } from 'expo-three';
 import { BoxyEventSystem, BoxyEventType } from '../events/boxy-events';
@@ -16,7 +15,6 @@ export class BoxyExpressionManager {
     private _eventSystem: BoxyEventSystem;
     private _isInitialized: boolean = false;
     private _group: THREE.Group; 
-    private _atlasPath: string;
     private _screenMaterialNamePattern: RegExp;
     private _config: {
         rows: number;
@@ -28,13 +26,11 @@ export class BoxyExpressionManager {
 
     constructor(
         group: THREE.Group, 
-        atlasPath: string,
         screenMaterialNamePattern: RegExp,
         config: { rows: number; columns: number; },
         instanceId: string 
     ) {
         this._group = group;
-        this._atlasPath = atlasPath;
         this._screenMaterialNamePattern = screenMaterialNamePattern;
         this._config = config;
         this._instanceId = instanceId; 
@@ -58,26 +54,10 @@ export class BoxyExpressionManager {
     //FIX THIS  ASAP  BROKEN EXPO ASSETS NEED TO STUDY UP 
     private async _loadAtlasTexture(): Promise<void> {
         try {
-          console.log("TextureLoader is from:", ExpoTextureLoader?.toString());
           const asset = Asset.fromModule(require("../../boxy-assets/textures/boxy-sprite-sheet.png"));
           await asset.downloadAsync();
-      
-          console.log("Asset localUri:", asset.localUri);
-      
-          if (!asset.localUri && !asset.uri) {
-            throw new Error("Asset localUri and uri are undefined.");
-          }
-      
-          const uri = Platform.select({
-            ios: asset.localUri || asset.uri,
-            android: asset.localUri?.startsWith('file://') 
-              ? asset.localUri 
-              : `file://${asset.localUri || asset.uri}`,
-          });
-      
-          console.log("Resolved texture URI:", uri);
-      
-          const texture = await new ExpoTextureLoader().loadAsync(uri!);
+            
+          const texture = await new ExpoTextureLoader().loadAsync( asset.localUri || asset.uri );
       
           texture.flipY = false;
           texture.minFilter = THREE.NearestFilter;
@@ -85,9 +65,9 @@ export class BoxyExpressionManager {
           texture.needsUpdate = true;
       
           const material = this._findFaceMaterial();
-          console.log("Face material found:", material?.name, material?.map);
+          console.log("FOUND", material?.name, material?.map);
           if (!material) {
-            throw new Error("Face material not found");
+            throw new Error("Fnot foun d");
           }
       
           this._textureManager = new SpriteTexture(
@@ -97,9 +77,8 @@ export class BoxyExpressionManager {
             material
           );
       
-          console.log("Texture manager initialized successfully.");
         } catch (error) {
-          console.error("Failed to load atlas texture:", error);
+          console.error("main error", error);
           throw error;
         }
     }

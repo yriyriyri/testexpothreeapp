@@ -6,7 +6,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { BaseBodyPart, PartType } from "./boxy-parts";
 import { bodyPartPaths, PaletteData, PaletteManager } from "./boxy-config";
 
-// Import animation modules
 import { BoxyAnimationManager } from "./animations/animation-manager";
 import { AnimationHelper } from "./animations/animation-helper";
 import { BoxyEventSystem, BoxyEventType } from "./events/boxy-events";
@@ -18,9 +17,9 @@ export interface BoxyConfig {
   animation: string;
   facial_expressions: boolean;
   emotion: { x: number; y: number };
-  Body: string; // e.g. "Body_2"
-  Ears: string; // e.g. "Ears_1"
-  Paws: string; // e.g. "Paws_2"
+  Body: string; 
+  Ears: string; 
+  Paws: string; 
   paletteIndex: number;
   [key: string]: any;
 }
@@ -68,21 +67,17 @@ export class Boxy {
   private localConfig: BoxyConfig;
   private loader: GLTFLoader;
   
-  // Animation properties
   private mixer?: THREE.AnimationMixer;
   private animations: THREE.AnimationClip[] = [];
   private _actions: Map<string, THREE.AnimationAction> = new Map();
   public animationManager?: BoxyAnimationManager;
 
-  // Skeleton storage
   private baseSkeleton?: THREE.Skeleton;
 
   constructor(config: Partial<BoxyConfig> = {}) {
-    // Merge partial config with defaults
     this.config = { ...defaultConfig, ...config };
     this.localConfig = { ...this.config };
 
-    // Initialize loader and group
     this.loader = new GLTFLoader();
     this.group = new THREE.Group();
     this.group.matrixAutoUpdate = true;
@@ -91,14 +86,12 @@ export class Boxy {
 
   public async load(): Promise<THREE.Group> {
     try {
-      // Load base scene using Expo's asset system
       const asset = Asset.fromModule(require('../boxy-assets/scenes/base_scene.glb'));
       await asset.downloadAsync();
       const localUri = asset.localUri || asset.uri;
       const gltf = await this.loader.loadAsync(localUri);
       const loadedScene = gltf.scene as THREE.Group;
       
-      // Name the base scene so it can be removed later
       loadedScene.name = "base_scene";
       
       loadedScene.visible = true;
@@ -107,7 +100,6 @@ export class Boxy {
       loadedScene.scale.set(1, 1, 1);
       loadedScene.updateMatrixWorld(true);
   
-      // Extract the skeleton if available
       loadedScene.traverse((child) => {
         child.matrixAutoUpdate = true;
         if (child instanceof THREE.SkinnedMesh && !this.baseSkeleton) {
@@ -115,14 +107,12 @@ export class Boxy {
         }
       });
   
-      // Reset our group and add the base scene
       this.group = new THREE.Group();
       this.group.matrixAutoUpdate = true;
       this.group.visible = false;
       this.group.add(loadedScene);
       this.group.updateMatrixWorld(true);
   
-      // Extract animations, if any
       this.animations = gltf.animations;
       if (this.animations && this.animations.length > 0) {
         this.mixer = new THREE.AnimationMixer(loadedScene);
@@ -133,7 +123,6 @@ export class Boxy {
         this.mixer.timeScale = 1;
       }
   
-      // Instantiate the Animation Manager (expression manager omitted)
       if (this.mixer && this.animations.length > 0) {
         this.animationManager = new BoxyAnimationManager(
           this.group,
@@ -148,7 +137,6 @@ export class Boxy {
       console.log("Base scene loaded. Group children:", this.group.children);
       console.log("Config:", this.config);
   
-      // Apply configuration then remove the base scene so only swapped parts remain.
       setTimeout(async () => {
         await this.applyConfig(this.config);
       
@@ -178,13 +166,6 @@ export class Boxy {
     }
   }
 
-  private extractVariantNumber(partString: string): number {
-    // e.g. "Body_2" => 2
-    const match = partString.match(/\d+$/);
-    return match ? parseInt(match[0]) : 0;
-  }
-
-  // Apply palette to a given object using the provided palette materials.
   private applyPaletteToObject(object: THREE.Object3D, paletteMats: PaletteMats): void {
     object.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
@@ -346,7 +327,6 @@ export class Boxy {
     }
   
     try {
-      // Use the locally imported JSON directly
       const paletteJson: { [key: string]: PaletteJsonEntry } = paletteData.jsonPath;
       const paletteEntries: PaletteJsonEntry[] = Object.values(paletteJson);
   
@@ -364,7 +344,6 @@ export class Boxy {
         paletteMats.materials.push(matProp);
       });
   
-      // Traverse the entire group and adjust materials to match palette
       this.group.traverse((child) => {
         if ((child as THREE.Mesh).isMesh) {
           const mesh = child as THREE.Mesh;

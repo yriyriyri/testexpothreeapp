@@ -37,17 +37,11 @@ class BoxyAnimationManager {
     }
   
     private async _initExpressionManager() {
-      const spriteSheetAsset = Asset.fromModule(
-        require("../../boxy-assets/textures/boxy-sprite-sheet.png")
-      );
-  
-      await spriteSheetAsset.downloadAsync(); // CRITICAL: await this call first!
-  
+        
       const spriteSheetSize = { rows: 9, columns: 20 };
   
       this.boxyExpressionManager = new BoxyExpressionManager(
         this._group,
-        spriteSheetAsset.localUri || spriteSheetAsset.uri,
         this.screenMaterialNamePattern,
         spriteSheetSize,
         this._instanceId
@@ -55,7 +49,6 @@ class BoxyAnimationManager {
   
       await this.boxyExpressionManager.initPromise;
   
-      // Now safely proceed with animations:
       await this.setupExpressionAnimations();
       this.boxyExpressionManager.playAnimation(
         EmotionType.Idle,
