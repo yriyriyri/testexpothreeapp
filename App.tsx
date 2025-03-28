@@ -4,13 +4,31 @@ import { View, StyleSheet } from 'react-native';
 import { GLView, ExpoWebGLRenderingContext } from 'expo-gl';
 import { Asset } from 'expo-asset';
 import * as THREE from 'three';
-import { TextureLoader } from 'expo-three'; 
+import { TextureLoader as ExpoTextureThree } from 'expo-three'; 
 import { Renderer } from 'expo-three';
 import OrbitControlsView from './orbit-controls/OrbitControlsView';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 import { Boxy } from './boxy/boxy';
+
+
+const ignoreLogs = [
+  'EXGL: gl.pixelStorei',
+  'Running "main"',
+]
+
+const ignoreWarnings = [
+  'THREE.WebGLRenderer',
+]
+const log = console.log;
+const warn = console.warn;
+console.log = (message?: any, ...optionalParams: any[]) => {
+  if (message && ignoreLogs.some((str) => message && message.startsWith && message.startsWith(str))) {
+    return;
+  }
+  log(message, ...optionalParams);
+};
 
 export default function App() {
   const [camera, setCamera] = React.useState<THREE.Camera | null>(null);
@@ -54,9 +72,9 @@ export default function App() {
 
     try {
       boxyInstance = new Boxy({
-        Body: "Body_2",
+        Body: "Body_1",
         Ears: "Ears_1",
-        Paws: "Paws_2",
+        Paws: "Paws_1",
         paletteIndex: 2,
       });
       const boxyGroup = await boxyInstance.load();
@@ -65,25 +83,25 @@ export default function App() {
       console.error("Error loading Boxy:", error);
     }
 
-    // try {
-    //   const asset = Asset.fromModule(require('./boxy-assets/textures/boxy-sprite-sheet.png'));
-    //   await asset.downloadAsync();
+    try {
+      const asset = Asset.fromModule(require('./boxy-assets/textures/boxy-sprite-sheet.png'));
+      await asset.downloadAsync();
     
-    //   const texture = await new TextureLoader().loadAsync(asset.localUri || asset.uri);
-    //   texture.flipY = false;
-    //   texture.minFilter = THREE.NearestFilter;
-    //   texture.magFilter = THREE.NearestFilter;
-    //   texture.needsUpdate = true;
+      const texture = await new ExpoTextureThree().loadAsync(asset.localUri || asset.uri);
+      texture.flipY = false;
+      texture.minFilter = THREE.NearestFilter;
+      texture.magFilter = THREE.NearestFilter;
+      texture.needsUpdate = true;
     
-    //   const planeGeometry = new THREE.PlaneGeometry(4, 2);
-    //   const planeMaterial = new THREE.MeshBasicMaterial({ map: texture });
-    //   const debugPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+      const planeGeometry = new THREE.PlaneGeometry(4, 2);
+      const planeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+      const debugPlane = new THREE.Mesh(planeGeometry, planeMaterial);
     
-    //   debugPlane.position.set(0, 2.5, 0); 
-    //   scene.add(debugPlane);
+      debugPlane.position.set(0, 2.5, 0); 
+      scene.add(debugPlane);
     
-    // } catch (err) {
-    // }
+    } catch (err) {
+    }
 
     const clock = new THREE.Clock();
 

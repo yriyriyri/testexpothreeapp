@@ -58,7 +58,7 @@ export class BoxyExpressionManager {
           await asset.downloadAsync();
             
           const texture = await new ExpoTextureLoader().loadAsync( asset.localUri || asset.uri );
-      
+          console.log("TEXTURE", texture);
           texture.flipY = false;
           texture.minFilter = THREE.NearestFilter;
           texture.magFilter = THREE.NearestFilter;

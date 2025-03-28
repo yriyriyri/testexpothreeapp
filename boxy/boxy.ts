@@ -51,9 +51,9 @@ export interface PaletteJsonEntry {
 
 const defaultConfig: BoxyConfig = {
   username: "anon",
-  Body: "Body_2",
+  Body: "Body_1",
   Ears: "Ears_1",
-  Paws: "Paws_2",
+  Paws: "Paws_1",
   paletteIndex: 0,
   emotion: { x: 0.2, y: 0 },
   userid: "defaultUser",
